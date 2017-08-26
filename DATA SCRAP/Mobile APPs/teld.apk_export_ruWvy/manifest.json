@@ -1,0 +1,58 @@
+{
+  "name": "__MSG_extName__",
+  "default_locale": "en",
+  "manifest_version": 2,
+  "version": "0.96",
+  "version_name": "3.3.1",
+  "offline_enabled": true,
+  "app": {
+    "background": {
+      "page": "app_main.html"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "notifications",
+    "clipboardRead",
+    "accessibilityFeatures.read",
+    "identity",
+    "videoCapture",
+    {"socket": ["tcp-connect", "tcp-listen", "udp-bind", "udp-send-to", "resolve-host", "resolve-proxy"]},
+    "identity.email",
+    "geolocation",
+    "unlimitedStorage",
+    {"fileSystem": ["write"]},
+    "https://clients2.google.com/",
+    "clipboardWrite",
+    "alarms",
+    "storage",
+    "overrideEscFullscreen",
+    "fullscreen",
+    "audioCapture"]
+,
+  "requirements": {
+    "3D": {
+      "features": ["webgl"]
+    }
+  },
+  "kiosk_enabled": true,
+  "import": [{"id": "mfaihdlpglflfgpfjcifdjdjcckigekc"}],
+  "file_handlers": {},
+  
+  
+  "arc_metadata": {
+    "apkList": [
+      "teld.apk"
+    ],
+    "enableExternalDirectory": false,
+    "formFactor": "tablet",
+    "name": "\u7279\u6765\u7535",
+    "orientation": "landscape",
+    "packageName": "com.qdtevc.teld.app",
+    "resize": "reconfigure",
+    "useGoogleContactsSyncAdapter": true
+  }
+}
