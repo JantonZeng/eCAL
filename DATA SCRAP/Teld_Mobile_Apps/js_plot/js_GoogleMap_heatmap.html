@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAiT_YOLtKwK0yIVtm4Ajtz68ka14ZXsk&callback=initMap&libraries=visualization">
+    </script>
+    <script>
+
+      var station_spatial = []
+      d3.json("Station_geo_info.txt", function(error, data) 
+          {
+            if (error) throw error
+            for (i = 0; i < data.length; i++) {
+              station_spatial.push(new google.maps.LatLng(Number(data[i][1]), Number(data[i][0])))
+            }
+            console.log(station_spatial)
+          }
+        )
+      var map, heatmap;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: {lat: 35.024, lng: 120.887}
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: station_spatial,
+          map: map
+        });
+      }
+
+    </script>
+    
+  </body>
+</html>
