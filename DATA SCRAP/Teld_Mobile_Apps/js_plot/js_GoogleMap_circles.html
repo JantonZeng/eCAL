@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Marker Clustering</title>
+    <title>Circles</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -61,15 +61,28 @@
         var markers = station_spatial.map(function(location, i) {
           return new google.maps.Marker({
             position: location,
-            // label: labels[i % labels.length],
+            label: count[i].toString(),
             animation: google.maps.Animation.DROP
-          });
+          })
         });
 
         // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-        
+        for (i = 0; i < count.length; i++) {
+          var stationCircle = new google.maps.Circle({
+            strokeColor: '#CC3300',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#CC3300',
+            fillOpacity: 0.1,
+            map: map,
+            // center: station_spatial[i],
+            center: markers[i].position,
+            radius: Math.sqrt(count[i]) * map.zoom * 100
+          })
+        }
+        // console.log(markers[0])
       }
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">

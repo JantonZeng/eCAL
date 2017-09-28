@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Marker Clustering</title>
+    <title>Heat Map</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -47,8 +47,9 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAiT_YOLtKwK0yIVtm4Ajtz68ka14ZXsk&callback=initMap&libraries=visualization">
     </script>
     <script>
-
+      var map, heatmap;
       var station_spatial = []
+      var count = []
       d3.json("Station_geo_info.txt", function(error, data) 
           {
             if (error) throw error
@@ -58,8 +59,17 @@
             console.log(station_spatial)
           }
         )
-      var map, heatmap;
 
+      d3.json("session_count.txt", function(error, data) 
+          {
+            if (error) throw error
+            for (i = 0; i < data.length; i++) {
+              count.push(data[i])
+            }
+            console.log(count)
+          }
+        )
+      
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 5,
